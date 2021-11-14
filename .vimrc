@@ -12,6 +12,7 @@ Plugin 'rainglow/vim'
 Plugin 'farmergreg/vim-lastplace'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'NLKNguyen/papercolor-theme'
 call vundle#end()
 
 filetype plugin indent on
@@ -46,10 +47,10 @@ set ffs=unix,mac,dos
 set noerrorbells
 set lazyredraw
 set ruler
-"set number
+set number
 set laststatus=2
 "set statusline=\ %F%m%r%h\ %y\ %w%=%l:%c%V\ [0x%B]
-color molokai
+color purify
 let g:airline_powerline_fonts = 1
 let g:lips_rainbow = 0
 
@@ -68,3 +69,4 @@ set noswapfile
 
 set history=100
 set showcmd
+set foldmethod=marker
