@@ -4,59 +4,36 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-set $dark1        #3c3836
-set $dark2        #504945
-set $dark3        #665c54
-set $dark4        #7c6f64
-
-set $bg1   #191622
-set $fg1   #e1e1e6
-set $black   #000000
-set $red     #ff5555
-set $green   #50fa7b
-set $yellow  #effa78
-set $blue    #bd93f9
-set $magenta #ff79c6
-set $cyan    #8d79ba
-set $white   #bfbfbf
-
-# Set colors
-set $bg $dark1
-set $fg $dark1
-set $br $blue
-set $ia $bg1
-
 default_border pixel 2
 smart_borders on
+
+include colors
 
 # class                 border  backgr. text    indicator child_border
 client.focused          $br     $br     $fg     $bg       $br
 client.focused_inactive $bg     $bg     $fg     $bg       $bg
 client.unfocused        $bg     $bg     $fg     $bg       $bg
-#client.urgent          $br     $br     $fg     $bg       $br #currently not implemented
-#client.placeholder     $br     $br     $fg     $bg       $br #currently not implemented
+#client.urgent          $br     $br     $fg     $bg       $br
+#client.placeholder     $br     $br     $fg     $bg       $br
 client.background $bg
 
-### Variables
-#
-# Logo key. Use Mod1 for Alt.
 set $mod Mod4
-# Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
 set $term alacritty
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
+
+set $menu dmenu_path | dmenu -i -fn Terminus:20 -sf "$dark1" -nf "$blue" -nb "$dark1" -sb "$blue"| xargs swaymsg exec --
+# pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+
+exec sway-accel-rotate
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/pictures/wallpaper/wp0.jpg fit
+# output * bg ~/pictures/wallpaper/wp0.jpg fit
 #
 # Example configuration:
 #
@@ -68,10 +45,10 @@ output * bg ~/pictures/wallpaper/wp0.jpg fit
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -254,7 +231,7 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     status_command i3status
-    font terminus,monospace bold 16
+    font terminus,monospace regular 12
 
     colors {
       separator $blue

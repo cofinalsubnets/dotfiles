@@ -12,7 +12,7 @@ general {
 }
 
 order += "wireless _first_"
-order += "battery all"
+order += "battery 0"
 order += "load"
 order += "memory"
 order += "tztime local"
@@ -22,8 +22,9 @@ wireless _first_ {
         format_down = "(down)"
 }
 
-battery all {
-        format = "%status %remaining"
+battery 0 {
+        format = "%status %percentage"
+        path = "/sys/class/power_supply/sbs-9-000b/uevent"
 }
 
 load {

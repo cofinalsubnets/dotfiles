@@ -52,7 +52,7 @@ set laststatus=2
 "set statusline=\ %F%m%r%h\ %y\ %w%=%l:%c%V\ [0x%B]
 color purify
 let g:airline_powerline_fonts = 1
-let g:lips_rainbow = 0
+let g:lips_rainbow = 1
 
 " search behaviour
 set ignorecase

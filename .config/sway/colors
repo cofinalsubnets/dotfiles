@@ -1,0 +1,20 @@
+set $dark1        #3c3836
+set $dark2        #504945
+set $dark3        #665c54
+set $dark4        #7c6f64
+
+set $bg1   #191622
+set $fg1   #e1e1e6
+set $black   #000000
+set $red     #ff5555
+set $green   #50fa7b
+set $yellow  #effa78
+set $blue    #bd93f9
+set $magenta #ff79c6
+set $cyan    #8d79ba
+set $white   #bfbfbf
+
+# Set colors
+set $bg $dark1
+set $fg $dark1
+set $br $blue
