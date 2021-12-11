@@ -50,7 +50,7 @@ set ruler
 set number
 set laststatus=2
 "set statusline=\ %F%m%r%h\ %y\ %w%=%l:%c%V\ [0x%B]
-color purify
+color molokai
 let g:airline_powerline_fonts = 1
 let g:lips_rainbow = 1
 

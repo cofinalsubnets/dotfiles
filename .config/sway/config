@@ -1,11 +1,8 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
 default_border pixel 2
 smart_borders on
+
+#gaps outer 12
+#gaps inner 12
 
 include colors
 
@@ -24,7 +21,7 @@ set $up k
 set $right l
 set $term alacritty
 
-set $menu dmenu_path | dmenu -i -fn Terminus:20 -sf "$dark1" -nf "$blue" -nb "$dark1" -sb "$blue"| xargs swaymsg exec --
+set $menu dmenu_path | dmenu -i -fn Terminus:24 -sf "$dark1" -nf "$blue" -nb "$dark1" -sb "$blue"| xargs swaymsg exec --
 # pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 
@@ -33,7 +30,7 @@ exec sway-accel-rotate
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg ~/pictures/wallpaper/wp0.jpg fit
+output * bg ~/pictures/wallpaper/wp1.jpg fit
 #
 # Example configuration:
 #
@@ -231,7 +228,7 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     status_command i3status
-    font terminus,monospace regular 12
+    font terminus,monospace bold 14
 
     colors {
       separator $blue

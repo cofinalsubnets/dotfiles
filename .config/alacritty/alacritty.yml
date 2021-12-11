@@ -6,26 +6,26 @@ scrolling:
   history: 10000 # 0 # disabled
   multiplier: 3 # Scrolling distance multiplier.
 font:
-  size: 11.0
+  size: 14.0
   use_thin_strokes: true
   normal:
-    family: mononoki
+    family: Terminus
     style: Regular
   bold:
-    family: mononoki
+    family: Terminus
     style: Bold
   italic:
-    family: mononoki
+    family: Terminus
     style: Italic
   bold_italic:
-    family: mononoki
+    family: Terminus
     style: Bold Italic
 
 bell:
   duration: 25 # ms
   color: '#ffffff'
 
-background_opacity: 0.95
+background_opacity: 0.9
 
 selection:
   save_to_clipboard: true

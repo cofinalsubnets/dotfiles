@@ -24,7 +24,7 @@ wireless _first_ {
 
 battery 0 {
         format = "%status %percentage"
-        path = "/sys/class/power_supply/sbs-9-000b/uevent"
+        path = "/sys/class/power_supply/BAT1/uevent"
 }
 
 load {
