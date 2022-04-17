@@ -1,0 +1,11 @@
+alias -g ...=../..
+alias -g ....=../../..
+alias gco='git checkout'
+alias gc='git commit'
+alias gp='git pull'
+alias gP='git push'
+alias ga='git add'
+alias gb='git branch'
+alias gst='git status'
+alias ytxa='youtube-dl --extract-audio'
+alias open='xdg-open'

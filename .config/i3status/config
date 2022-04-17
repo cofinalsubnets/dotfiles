@@ -23,7 +23,12 @@ wireless _first_ {
 }
 
 battery 0 {
-        format = "%status %percentage"
+        format = "%percentage %status"
+        format_percentage = "%.00f%s"
+        status_bat = "-"
+        status_chr = "+"
+        status_full = "0"
+        status_unk = "?"
         path = "/sys/class/power_supply/BAT1/uevent"
 }
 

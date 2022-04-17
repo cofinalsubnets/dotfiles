@@ -15,6 +15,16 @@ set $cyan    #8d79ba
 set $white   #bfbfbf
 
 # Set colors
+
 set $bg $dark1
 set $fg $dark1
 set $br $blue
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $br     $br     $fg     $bg       $br
+client.focused_inactive $bg     $bg     $fg     $bg       $bg
+client.unfocused        $bg     $bg     $fg     $bg       $bg
+#client.urgent          $br     $br     $fg     $bg       $br
+#client.placeholder     $br     $br     $fg     $bg       $br
+client.background $bg
+
