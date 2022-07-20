@@ -9,3 +9,5 @@ alias gb='git branch'
 alias gst='git status'
 alias ytxa='youtube-dl --extract-audio'
 alias open='xdg-open'
+
+export PATH=$HOME/.local/cross/bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:/usr/lib/ccache/bin:$PATH

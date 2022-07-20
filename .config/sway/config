@@ -1,82 +1,8 @@
 include /etc/sway/config.d/*
 
-
 #xwayland disable
 default_border pixel 1
 smart_borders on
-
-
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-input type:touchpad {
-  dwt enabled
-  tap enabled
-  natural_scroll enabled
-}
-input type:keyboard {
-  repeat_delay 300
-  repeat_rate 40
-  xkb_options 'ctrl:nocaps'
-}
-
-
-
-exec swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
-exec sway-accel-rotate
-exec systemctl --user start foot-server@wayland-1.socket
-
-
-set $dark1        #3c3836
-set $dark2        #504945
-set $dark3        #665c54
-set $dark4        #7c6f64
-
-set $bg1   #191622
-set $fg1   #e1e1e6
-set $black   #000000
-set $red     #ff5555
-set $green   #50fa7b
-set $yellow  #effa78
-set $blue    #bd93f9
-set $magenta #ff79c6
-set $cyan    #8d79ba
-set $white   #bfbfbf
-
-#output * bg "/home/gw/pictures/zeta_pastel.png" center
-
-# Set colors
-
-set $bg $dark1
-set $fg $dark1
-set $br $blue
-
-# class                 border  backgr. text    indicator child_border
-client.focused          $white    $fg1     $fg1     $bg1       $fg1
-client.focused_inactive $dark1     $dark1     $fg1     $dark1       $dark1
-client.unfocused        $dark1     $dark1     $fg1     $dark1       $dark1
-#client.urgent          $br     $br     $fg     $bg       $br
-#client.placeholder     $br     $br     $fg     $bg       $br
-client.background $bg1
-
-bar {
-    position top
-
-    status_command i3status
-    font terminus,monospace regular 14
-
-    colors {
-      separator $bg
-      background $bg1
-      statusline $white
-      # class            border    bg        text
-      focused_workspace   $white      $bg1        $white
-      active_workspace    $dark1      $bg1        $dark4
-      inactive_workspace  $dark1      $bg1        $dark4
-      urgent_workspace    $dark4      $dark3      $bg1
-      binding_mode        $dark2      $dark2      $white
-    }
-}
-
 
 set $mod Mod4
 set $left h
@@ -84,47 +10,15 @@ set $down j
 set $up k
 set $right l
 
-### Key bindings
-#
-# Basics:
-#
-# Start a terminal
-bindsym $mod+Space exec footclient
-
-# Kill focused window
-bindsym $mod+x kill
-
-# launcer command
-set $menu dmenu_path | dmenu -i -fn Terminus:24 -sf "$dark1" -nf "$blue" -nb "$dark1" -sb "$blue"| xargs swaymsg exec --
-
-# pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-
-# Start your launcher
-bindsym $mod+Return exec $menu
-
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right
-# mouse button for dragging.
-floating_modifier $mod normal
-
-# Reload the configuration file
 bindsym $mod+r reload
 bindsym $mod+q restart
-
-# Exit sway (logs you out of your Wayland session)
+bindsym $mod+x kill
 bindsym $mod+Shift+q exec swaymsg exit
-#
-# Moving around:
-#
-# Move your focus around
+
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-# Or use $mod+[up|down|left|right]
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -135,14 +29,11 @@ bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-# Ditto, with arrow keys
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-#
-# Workspaces:
-#
+
 # Switch to workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -154,6 +45,7 @@ bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
+
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
@@ -192,18 +84,82 @@ bindsym $mod+Tab focus mode_toggle
 
 # Move focus to the parent container
 bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-# Sway has a "scratchpad", which is a bag of holding for windows.
-# You can send windows there and get them back later.
 
-# Move the currently focused window to the scratchpad
-bindsym $mod+asciitilde move scratchpad
 
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+grave scratchpad show
+set $term footclient
+set $menu bemenu-run -i --fn "terminus regular 18" --sf "$bg1" --nf "$blue" --nb "$bg1" --sb "$blue"
+bindsym $mod+Space exec $term
+bindsym $mod+Return exec $menu
+
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86AudioRaiseVolume exec amixer set Master 10%+
+bindsym XF86AudioLowerVolume exec amixer set Master 10%-
+bindsym XF86AudioMute exec amixer set Master toggle
+
+exec swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
+exec systemctl --user start sway-accel-rotate@wayland-1.service
+exec systemctl --user start foot-server@wayland-1.socket
+
+set $dark1        #3c3836
+set $dark2        #504945
+set $dark3        #665c54
+set $dark4        #7c6f64
+
+set $bg1   #191622
+set $fg1   #e1e1e6
+set $black   #000000
+set $red     #ff5555
+set $green   #50fa7b
+set $yellow  #effa78
+set $blue    #bd93f9
+set $magenta #ff79c6
+set $cyan    #8d79ba
+set $white   #bfbfbf
+
+output * bg $bg1 solid_color
+
+# Set colors
+
+set $bg $dark1
+set $fg $dark1
+set $br $blue
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $white    $fg1     $fg1     $bg1       $fg1
+client.focused_inactive $dark1     $dark1     $fg1     $dark1       $dark1
+client.unfocused        $dark1     $dark1     $fg1     $dark1       $dark1
+#client.urgent          $br     $br     $fg     $bg       $br
+#client.placeholder     $br     $br     $fg     $bg       $br
+client.background $bg1
+
+bar {
+    position top
+
+    status_command i3status
+    font terminus,monospace regular 14
+
+#    swaybar_command waybar
+    colors {
+      separator $bg
+      background $bg1
+      statusline $white
+      # class            border    bg        text
+      focused_workspace   $white      $bg1        $white
+      active_workspace    $dark1      $bg1        $dark4
+      inactive_workspace  $dark1      $bg1        $dark4
+      urgent_workspace    $dark4      $dark3      $bg1
+      binding_mode        $dark2      $dark2      $white
+    }
+}
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
 #
 # Resizing containers:
 #
@@ -227,10 +183,17 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Control+r mode "resize"
 
-bindsym XF86MonBrightnessUp exec brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
-bindsym XF86AudioRaiseVolume exec amixer -c 0 set Master 10%+
-bindsym XF86AudioLowerVolume exec amixer -c 0 set Master 10%-
-bindsym XF86AudioMute exec amixer -C 0 set Master toggle
+bindsym $mod+Control+r mode "resize"
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+input type:touchpad {
+  dwt enabled
+  tap enabled
+  natural_scroll enabled
+}
+input type:keyboard {
+  repeat_delay 300
+  repeat_rate 40
+  xkb_options 'ctrl:nocaps'
+}
