@@ -86,6 +86,7 @@ bindsym $mod+Tab focus mode_toggle
 bindsym $mod+a focus parent
 
 
+#set $term alacritty
 set $term footclient
 set $menu bemenu-run -i --fn "terminus regular 18" --sf "$bg1" --nf "$blue" --nb "$bg1" --sb "$blue"
 bindsym $mod+Space exec $term
